@@ -3,7 +3,7 @@ groups:
   - name: blue-green
     jobs:
     - unit-testing
-    - deploy-it
+    - deploy-it-blue-green
 
 jobs:
 - name: unit-testing
@@ -20,7 +20,6 @@ jobs:
   serial: true
   plan:
   - get: concourse-workshop-bg
-    resource: concourse-workshop-bg-master
     passed: [unit-testing]
     trigger: true
   - put: resource-deploy-to-pcf
