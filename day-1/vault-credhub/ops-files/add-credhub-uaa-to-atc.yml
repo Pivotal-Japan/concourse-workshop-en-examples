@@ -149,8 +149,6 @@
             - ((concourse-tls.ca))
         data_storage:
           type: postgres
-          host: ((db_ip))
-          port: 5432
           username: credhub
           password: ((credhub-db-password))
           database: credhub
@@ -228,7 +226,6 @@
               key-1:
                 signingKey: ((uaa-jwt.private_key))
       uaadb:
-        address: ((db_ip))
         port: 5432
         db_scheme: postgresql
         databases:
