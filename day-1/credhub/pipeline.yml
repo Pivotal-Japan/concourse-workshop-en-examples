@@ -1,0 +1,19 @@
+jobs:
+- name: hello-credentials
+  plan:
+  - task: show-me-credentials
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: getourneau/alpine-bash-git}
+      params:
+        MY_USERNAME: ((foo.username))
+        MY_PASSWORD: ((foo.password))
+      run:
+        path: bash
+        args:
+        - -c
+        - |
+          echo ${MY_USERNAME}
+          echo ${MY_PASSWORD}

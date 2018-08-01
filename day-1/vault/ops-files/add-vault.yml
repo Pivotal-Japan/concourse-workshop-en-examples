@@ -1,0 +1,15 @@
+# remove existing vault configuration
+- type: remove
+  path: /instance_groups/name=web/jobs/name=atc/properties/credhub?
+
+# add credhub configuration
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/vault?
+  value:
+    auth: AppRole
+    client_token: ((vault-concourse-token))
+    tls:
+      ca_cert:
+        certificate: ((vault-tls.certificate))((vault-ca.certificate))
+    insecure_skip_verify: true
+    url: ((vault_uri))
